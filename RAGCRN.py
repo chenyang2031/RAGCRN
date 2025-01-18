@@ -5,7 +5,35 @@ import numpy as np
 import pandas as pd
 import random
 from torch import nn
+
 import matplotlib.pyplot as plt
+
+def visualize_predictions(predictions, node_idx, time_steps, ground_truth=None):
+
+    # 将 predictions 转换为 numpy 数组
+    predictions = predictions.detach().cpu().numpy()
+    # 获取特定节点的预测值
+    node_predictions = predictions[:, node_idx, :]
+
+    # 绘制预测结果
+    plt.figure(figsize=(10, 6))
+    for t in time_steps:
+        plt.plot(node_predictions[:, t], label=f'Predicted Time Step {t}')
+
+    # 如果有真实值，绘制真实值
+    if ground_truth is not None:
+        ground_truth = ground_truth.detach().cpu().numpy()
+        node_ground_truth = ground_truth[:, node_idx, :]
+        for t in time_steps:
+            plt.plot(node_ground_truth[:, t], label=f'Ground Truth Time Step {t}', linestyle='--')
+
+    plt.title(f'Predictions for Node {node_idx}')
+    plt.xlabel('Batch Index')
+    plt.ylabel('Value')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -238,8 +266,12 @@ def test_model():
     node = config.node
     train_data = torch.randn(batch_size, node, seq_len).to(device)
     target_data = torch.randn(batch_size, node, config.n_pred).to(device)
-    output = model(train_data, target_data, 0)  
+    output = model(train_data, target_data, 0)
     
+    # 可视化特定节点和时间步的预测结果
+    node_idx = 12  # 选择第一个节点
+    time_steps = [0, 1, 2]  # 选择前三个时间步
+    visualize_predictions(output, node_idx, time_steps, ground_truth=target_data)    
     print("Output shape:", output.shape)
 
 if __name__ == "__main__":
