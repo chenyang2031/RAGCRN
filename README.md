@@ -61,14 +61,14 @@ config = Config()
 model = RAGCRN(config).to(device)
 
 # 生成随机输入数据
-batch_size = 12
-seq_len = 10
+batch_size = 64
+seq_len = 12
 node = config.node
 train_data = torch.randn(batch_size, node, seq_len).to(device)
 target_data = torch.randn(batch_size, node, config.n_pred).to(device)
 
 # 运行模型
-output = model(train_data, target_data)
+output = model(train_data, target_data, 0)
 print("Output shape:", output.shape)
 ```
 
