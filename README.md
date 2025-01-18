@@ -1,6 +1,6 @@
 ---
 
-# RAGCRN: Reinforced attentive graph convolution recurrent Networks Model
+# RAGCRN: Reinforced attentive graph convolution recurrent Network
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-1.12%2B-orange)
