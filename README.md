@@ -5,7 +5,8 @@
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-1.12%2B-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
-- visit times: ![views since 2025/02/21](https://komarev.com/ghpvc/?username=muying&color=5865f2 )
+visit times: ![views since 2025/02/21](https://komarev.com/ghpvc/?username=muying&color=5865f2 )
+
 RAGCRN 是一个基于图卷积网络（GCN）和循环神经网络（GRU）的深度学习模型，用于时空数据预测。该模型结合了注意力机制，能够有效捕捉时空数据中的动态依赖关系，适用于交通流量预测、气象预测等任务。
 
 ## 项目结构
